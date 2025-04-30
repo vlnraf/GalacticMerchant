@@ -21,7 +21,7 @@ public class GalacticQueryHandler {
      * @param words the galactic words representing a number
      * @throws Exception if conversion fails
      */
-    public void handleHowMuch(String[] words) throws Exception {
+    public void handleHowMuch(List&lt;String&gt; words) throws Exception {
 <span class="fc" id="L25">        String roman = dictionary.toRoman(words);</span>
 <span class="fc" id="L26">        double value = RomanConverter.convert(roman);</span>
 <span class="fc" id="L27">        System.out.println(String.join(&quot; &quot;, words).toLowerCase() + &quot; is &quot; + value);</span>
@@ -36,7 +36,7 @@ public class GalacticQueryHandler {
      * @param words the galactic words followed by a metal name
      * @throws Exception if the word is unknown or conversion fails
      */
-    public void handleHowMany(String[] words) throws Exception {
+    public void handleHowMany(List&lt;String&gt; words) throws Exception {
 <span class="fc" id="L40">        List&lt;String&gt; symbolWords = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L41">        String metal = null;</span>
 
@@ -49,9 +49,9 @@ public class GalacticQueryHandler {
             } else {
 <span class="nc" id="L50">                throw new UnknownWordException(word);</span>
             }
-        }
+<span class="fc" id="L52">        }</span>
 
-<span class="fc" id="L54">        String roman = dictionary.toRoman(symbolWords.toArray(new String[0]));</span>
+<span class="fc" id="L54">        String roman = dictionary.toRoman(symbolWords);</span>
 <span class="fc" id="L55">        double units = RomanConverter.convert(roman);</span>
 <span class="fc" id="L56">        double credits = units * dictionary.getMetalValue(metal);</span>
 
@@ -68,22 +68,22 @@ public class GalacticQueryHandler {
      * @param words the declaration sentence
      * @throws Exception if parsing or conversion fails
      */
-    public void handleDeclarationMetal(String[] words) throws Exception {
+    public void handleDeclarationMetal(List&lt;String&gt; words) throws Exception {
 <span class="fc" id="L72">        String metal = &quot;&quot;;</span>
 <span class="fc" id="L73">        int credits = 0;</span>
 <span class="fc" id="L74">        List&lt;String&gt; symbolWords = new ArrayList&lt;&gt;();</span>
 
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        for (int i = 0; i &lt; words.length; i++) {</span>
-<span class="fc bfc" id="L77" title="All 2 branches covered.">            if (dictionary.containSymbol(words[i])) {</span>
-<span class="fc" id="L78">                symbolWords.add(words[i]);</span>
-<span class="fc bfc" id="L79" title="All 2 branches covered.">            } else if (words[i].equalsIgnoreCase(&quot;is&quot;)) {</span>
-<span class="fc" id="L80">                metal = words[i - 1];</span>
-<span class="fc" id="L81">                credits = Integer.parseInt(words[i + 1]);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        for (int i = 0; i &lt; words.size(); i++) {</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            if (dictionary.containSymbol(words.get(i))) {</span>
+<span class="fc" id="L78">                symbolWords.add(words.get(i));</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            } else if (words.get(i).equalsIgnoreCase(&quot;is&quot;)) {</span>
+<span class="fc" id="L80">                metal = words.get(i - 1);</span>
+<span class="fc" id="L81">                credits = Integer.parseInt(words.get(i + 1));</span>
 <span class="fc" id="L82">                break;</span>
             }
         }
 
-<span class="fc" id="L86">        String roman = dictionary.toRoman(symbolWords.toArray(new String[0]));</span>
+<span class="fc" id="L86">        String roman = dictionary.toRoman(symbolWords);</span>
 <span class="fc" id="L87">        double units = RomanConverter.convert(roman);</span>
 <span class="fc" id="L88">        dictionary.setMetalValue(metal, credits / units);</span>
 <span class="fc" id="L89">    }</span>

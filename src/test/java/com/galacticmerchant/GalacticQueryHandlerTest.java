@@ -7,6 +7,8 @@ import com.galacticmerchant.customexceptions.UnknownWordException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +31,10 @@ public class GalacticQueryHandlerTest {
 
     @Test
     public void testHandleHowMuch() throws Exception {
-        handler.handleHowMuch(new String[]{"glob", "prok"});
+        List<String> words = new ArrayList<>();
+        words.add("glob");
+        words.add("prok");
+        handler.handleHowMuch(words);
         String result = output.toString().trim();
         assertTrue(result.contains("glob prok is 4"));
     }
@@ -37,7 +42,11 @@ public class GalacticQueryHandlerTest {
     @Test
     public void testHandleHowMany() throws Exception {
         output.reset();
-        handler.handleHowMany(new String[]{"glob", "glob", "Silver"});
+        List<String> words = new ArrayList<>();
+        words.add("glob");
+        words.add("glob");
+        words.add("Silver");
+        handler.handleHowMany(words);
         String result = output.toString().trim();
         assertTrue(result.contains("glob glob silver is 34.0 Credits"));
     }
@@ -48,7 +57,14 @@ public class GalacticQueryHandlerTest {
         dict.addSymbol("glob", 'I');
         GalacticQueryHandler handler = new GalacticQueryHandler(dict);
 
-        handler.handleDeclarationMetal(new String[]{"glob", "glob", "Silver", "is", "34", "Credits"});
+        List<String> words = new ArrayList<>();
+        words.add("glob");
+        words.add("glob");
+        words.add("Silver");
+        words.add("is");
+        words.add("34");
+        words.add("Credits");
+        handler.handleDeclarationMetal(words);
 
         assertTrue(dict.containMetal("Silver"));
         assertEquals(17.0, dict.getMetalValue("Silver"));
@@ -63,7 +79,10 @@ public class GalacticQueryHandlerTest {
 
     @Test
     public void testUnknownWordException() {
+        List<String> words = new ArrayList<>();
+        words.add("blah");
+        words.add("blip");
         assertThrows(UnknownWordException.class, () ->
-                handler.handleHowMuch(new String[]{"blah", "blip"}));
+                handler.handleHowMuch(words));
     }
 }

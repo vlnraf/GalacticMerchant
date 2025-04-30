@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.List;
 
 import com.galacticmerchant.customexceptions.MaxRepeatingException;
 import com.galacticmerchant.customexceptions.NonRepeatingException;
@@ -52,7 +53,7 @@ public class QueryDispatcher {
      * @throws Exception if any parsing or handling error occurs
      */
     public void parseQuery(String query) throws Exception {
-        String[] words = query.trim().split(" ");
+        List<String> words = Arrays.asList(query.trim().split(" "));
 
         if (query.endsWith(Constants.queryCommand)) {
             if (query.startsWith(Constants.howMuch)) {
@@ -77,9 +78,10 @@ public class QueryDispatcher {
      * Handles "how much is" queries.
      * Example: "how much is pish tegj glob glob ?"
      */
-    private void handleHowMuchQuery(String[] words) throws Exception {
+    private void handleHowMuchQuery(List<String> words) throws Exception {
         // Skip "how much is"
-        String[] subWords = Arrays.copyOfRange(words, 3, words.length - 1);
+        List<String> subWords = words.subList(3, words.size() - 1);
+
         queryHandler.handleHowMuch(subWords);
     }
 
@@ -87,9 +89,9 @@ public class QueryDispatcher {
      * Handles "how many Credits is" queries.
      * Example: "how many Credits is glob prok Silver ?"
      */
-    private void handleHowManyQuery(String[] words) throws Exception {
+    private void handleHowManyQuery(List<String>  words) throws Exception {
         // Skip "how many Credits is"
-        String[] subWords = Arrays.copyOfRange(words, 4, words.length - 1);
+        List<String> subWords = words.subList(4, words.size() - 1);
         queryHandler.handleHowMany(subWords);
     }
 
@@ -97,7 +99,7 @@ public class QueryDispatcher {
      * Handles declarations of metal values.
      * Example: "glob glob Silver is 34 Credits"
      */
-    private void handleDeclarationMetal(String[] words) throws Exception{
+    private void handleDeclarationMetal(List<String> words) throws Exception{
         queryHandler.handleDeclarationMetal(words);
     }
 
@@ -105,12 +107,12 @@ public class QueryDispatcher {
      * Handles declarations of galactic symbols.
      * Example: "glob is I"
      */
-    private void handleDeclarationSymbol(String[] words) {
-            queryHandler.handleDeclarationSymbol(words[0], words[2].charAt(0));
+    private void handleDeclarationSymbol(List<String>  words) {
+            queryHandler.handleDeclarationSymbol(words.get(0), words.get(2).charAt(0));
     }
 
-    private boolean checkDeclarativaQuerySymbol(String[] words){
-        if (words.length == 3 && words[1].equalsIgnoreCase("is") && words[2].length() == 1) {
+    private boolean checkDeclarativaQuerySymbol(List<String>  words){
+        if (words.size() == 3 && words.get(1).equalsIgnoreCase("is") && words.get(2).length() == 1) {
             return true;
         }else{
             return false;

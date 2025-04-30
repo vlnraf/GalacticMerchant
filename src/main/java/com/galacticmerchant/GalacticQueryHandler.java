@@ -21,7 +21,7 @@ public class GalacticQueryHandler {
      * @param words the galactic words representing a number
      * @throws Exception if conversion fails
      */
-    public void handleHowMuch(String[] words) throws Exception {
+    public void handleHowMuch(List<String> words) throws Exception {
         String roman = dictionary.toRoman(words);
         double value = RomanConverter.convert(roman);
         System.out.println(String.join(" ", words).toLowerCase() + " is " + value);
@@ -36,7 +36,7 @@ public class GalacticQueryHandler {
      * @param words the galactic words followed by a metal name
      * @throws Exception if the word is unknown or conversion fails
      */
-    public void handleHowMany(String[] words) throws Exception {
+    public void handleHowMany(List<String> words) throws Exception {
         List<String> symbolWords = new ArrayList<>();
         String metal = null;
 
@@ -51,7 +51,7 @@ public class GalacticQueryHandler {
             }
         }
 
-        String roman = dictionary.toRoman(symbolWords.toArray(new String[0]));
+        String roman = dictionary.toRoman(symbolWords);
         double units = RomanConverter.convert(roman);
         double credits = units * dictionary.getMetalValue(metal);
 
@@ -68,22 +68,22 @@ public class GalacticQueryHandler {
      * @param words the declaration sentence
      * @throws Exception if parsing or conversion fails
      */
-    public void handleDeclarationMetal(String[] words) throws Exception {
+    public void handleDeclarationMetal(List<String> words) throws Exception {
         String metal = "";
         int credits = 0;
         List<String> symbolWords = new ArrayList<>();
 
-        for (int i = 0; i < words.length; i++) {
-            if (dictionary.containSymbol(words[i])) {
-                symbolWords.add(words[i]);
-            } else if (words[i].equalsIgnoreCase("is")) {
-                metal = words[i - 1];
-                credits = Integer.parseInt(words[i + 1]);
+        for (int i = 0; i < words.size(); i++) {
+            if (dictionary.containSymbol(words.get(i))) {
+                symbolWords.add(words.get(i));
+            } else if (words.get(i).equalsIgnoreCase("is")) {
+                metal = words.get(i - 1);
+                credits = Integer.parseInt(words.get(i + 1));
                 break;
             }
         }
 
-        String roman = dictionary.toRoman(symbolWords.toArray(new String[0]));
+        String roman = dictionary.toRoman(symbolWords);
         double units = RomanConverter.convert(roman);
         dictionary.setMetalValue(metal, credits / units);
     }

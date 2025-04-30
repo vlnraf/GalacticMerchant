@@ -1,6 +1,7 @@
 package com.galacticmerchant;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.galacticmerchant.customexceptions.UnknownWordException;
@@ -32,7 +33,7 @@ public class GalacticDictionary {
      * @return Roman numeral representation (e.g., "IV")
      * @throws UnknownWordException if any word is not recognized
      */
-    public String toRoman(String[] words) throws UnknownWordException {
+    public String toRoman(List<String> words) throws UnknownWordException {
         StringBuilder builder = new StringBuilder();
         for (String word : words) {
             if (!containSymbol(word)) {
