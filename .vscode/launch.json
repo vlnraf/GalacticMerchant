@@ -9,7 +9,6 @@
             "type": "java",
             "name": "Current File",
             "request": "launch",
-            "mainClass": "${file}",
             "args": "inputFile"
         },
         {
