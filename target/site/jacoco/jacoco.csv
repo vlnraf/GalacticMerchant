@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+GalacticMerchant,com.example.customexceptions,UnknownWordException,0,11,0,0,0,2,0,1,0,1
+GalacticMerchant,com.example.customexceptions,NonRepeatingException,0,11,0,0,0,2,0,1,0,1
+GalacticMerchant,com.example.customexceptions,MaxRepeatingException,0,13,0,0,0,2,0,1,0,1
+GalacticMerchant,com.example,RomanConverter.new HashMap() {...},0,52,0,0,0,9,0,1,0,1
+GalacticMerchant,com.example,RomanConverter,3,162,0,18,1,18,1,11,1,2
+GalacticMerchant,com.example,GalacticQueryHandler,5,184,3,9,1,36,3,8,0,5
+GalacticMerchant,com.example,App,87,0,4,0,17,0,3,0,1,0
+GalacticMerchant,com.example,Constants,3,0,0,0,1,0,1,0,1,0
+GalacticMerchant,com.example,GalacticDictionary,0,91,0,4,0,17,0,10,0,8
+GalacticMerchant,com.example,QueryDispatcher,7,118,5,11,2,26,5,9,0,6

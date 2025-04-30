@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GalacticDictionary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GalacticMerchant</a> &gt; <a href="index.source.html" class="el_package">com.example</a> &gt; <span class="el_source">GalacticDictionary.java</span></div><h1>GalacticDictionary.java</h1><pre class="source lang-java linenums">package com.example;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.example.customexceptions.UnknownWordException;
+
+<span class="fc" id="L8">public class GalacticDictionary {</span>
+
+    // Map to store galactic word to Roman numeral mapping (e.g., &quot;glob&quot; -&gt; 'I')
+<span class="fc" id="L11">    private final Map&lt;String, Character&gt; symbols = new HashMap&lt;&gt;();</span>
+
+    // Map to store metal names and their unit value (e.g., &quot;Silver&quot; -&gt; 17.0)
+<span class="fc" id="L14">    private final Map&lt;String, Double&gt; metalValues = new HashMap&lt;&gt;();</span>
+
+    public void addSymbol(String word, char roman) {
+<span class="fc" id="L17">        symbols.put(word, roman);</span>
+<span class="fc" id="L18">    }</span>
+
+    public boolean containSymbol(String word) {
+<span class="fc" id="L21">        return symbols.containsKey(word);</span>
+    }
+
+    public char getRoman(String word) {
+<span class="fc" id="L25">        return symbols.get(word);</span>
+    }
+
+    /**
+     * Converts an array of galactic words into a Roman numeral string.
+     *
+     * @param words array of galactic words (e.g., [&quot;glob&quot;, &quot;prok&quot;])
+     * @return Roman numeral representation (e.g., &quot;IV&quot;)
+     * @throws UnknownWordException if any word is not recognized
+     */
+    public String toRoman(String[] words) throws UnknownWordException {
+<span class="fc" id="L36">        StringBuilder builder = new StringBuilder();</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (String word : words) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (!containSymbol(word)) {</span>
+<span class="fc" id="L39">                throw new UnknownWordException(word);</span>
+            }
+<span class="fc" id="L41">            builder.append(getRoman(word));</span>
+        }
+<span class="fc" id="L43">        return builder.toString();</span>
+    }
+
+    public void setMetalValue(String metal, double value) {
+<span class="fc" id="L47">        metalValues.put(metal, value);</span>
+<span class="fc" id="L48">    }</span>
+
+    public boolean containMetal(String word) {
+<span class="fc" id="L51">        return metalValues.containsKey(word);</span>
+    }
+
+    public double getMetalValue(String metal) {
+<span class="fc" id="L55">        return metalValues.get(metal);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

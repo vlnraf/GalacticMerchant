@@ -1,0 +1,10 @@
+com/example/Constants.class
+com/example/App.class
+com/example/RomanConverter.class
+com/example/RomanConverter$1.class
+com/example/QueryDispatcher.class
+com/example/GalacticDictionary.class
+com/example/customexceptions/UnknownWordException.class
+com/example/customexceptions/NonRepeatingException.class
+com/example/customexceptions/MaxRepeatingException.class
+com/example/GalacticQueryHandler.class
