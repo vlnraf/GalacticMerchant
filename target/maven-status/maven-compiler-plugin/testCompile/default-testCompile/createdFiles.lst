@@ -1,4 +1,4 @@
-com/example/QueryDispatcherTest.class
-com/example/GalacticDictionaryTest.class
-com/example/GalacticQueryHandlerTest.class
-com/example/RomanConverterTest.class
+com/galacticmerchant/RomanConverterTest.class
+com/galacticmerchant/QueryDispatcherTest.class
+com/galacticmerchant/GalacticDictionaryTest.class
+com/galacticmerchant/GalacticQueryHandlerTest.class

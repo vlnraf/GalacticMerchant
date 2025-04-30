@@ -2,7 +2,6 @@ package com.galacticmerchant;
 
 import org.junit.jupiter.api.Test;
 
-import com.galacticmerchant.RomanConverter;
 import com.galacticmerchant.customexceptions.MaxRepeatingException;
 import com.galacticmerchant.customexceptions.NonRepeatingException;
 

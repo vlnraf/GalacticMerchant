@@ -1,6 +1,15 @@
 package com.galacticmerchant;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+
+import com.galacticmerchant.customexceptions.MaxRepeatingException;
+import com.galacticmerchant.customexceptions.NonRepeatingException;
+import com.galacticmerchant.customexceptions.UnknownWordException;
 
 public class QueryDispatcher {
 
@@ -10,6 +19,29 @@ public class QueryDispatcher {
     public QueryDispatcher() {
         this.dictionary = new GalacticDictionary();
         this.queryHandler = new GalacticQueryHandler(dictionary);
+    }
+
+    public void runParser(String fileName){
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+
+                try {
+                    parseQuery(line);
+                } catch (UnknownWordException | MaxRepeatingException | NonRepeatingException e) {
+                    System.out.println("Error processing line: \"" + line + "\"");
+                    System.out.println("Reason: " + e.getMessage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("Input file not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
     }
 
     /**
@@ -30,12 +62,14 @@ public class QueryDispatcher {
             } else {
                 System.out.println(Constants.queryError);
             }
-        } else if (query.contains(Constants.declarationCommand)) {
-            handleDeclarationMetal(words);
-        } else if (!query.contains(Constants.declarationCommand)){
-            handleDeclarationSymbol(words);
         }else{
-            System.out.println(Constants.queryError);
+            if (query.contains(Constants.declarationCommand)) {
+                handleDeclarationMetal(words);
+            }else if (checkDeclarativaQuerySymbol(words)) {
+                handleDeclarationSymbol(words);
+            }else{
+                System.out.println(Constants.queryError);
+            }
         }
     }
 
@@ -72,8 +106,14 @@ public class QueryDispatcher {
      * Example: "glob is I"
      */
     private void handleDeclarationSymbol(String[] words) {
-        if (words.length == 3 && words[1].equalsIgnoreCase("is") && words[2].length() == 1) {
             queryHandler.handleDeclarationSymbol(words[0], words[2].charAt(0));
+    }
+
+    private boolean checkDeclarativaQuerySymbol(String[] words){
+        if (words.length == 3 && words[1].equalsIgnoreCase("is") && words[2].length() == 1) {
+            return true;
+        }else{
+            return false;
         }
     }
 }
