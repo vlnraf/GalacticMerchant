@@ -1,4 +1,4 @@
-package com.example;
+package com.galacticmerchant;
 
 public class Constants {
     public static final String howMuch = "how much is";

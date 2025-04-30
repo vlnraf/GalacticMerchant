@@ -1,4 +1,4 @@
-package com.example.customexceptions;
+package com.galacticmerchant.customexceptions;
 
 public class NonRepeatingException extends Exception{
     public NonRepeatingException(Character character) {

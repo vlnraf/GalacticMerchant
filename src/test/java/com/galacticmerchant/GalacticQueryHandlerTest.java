@@ -1,8 +1,11 @@
-package com.example;
+package com.galacticmerchant;
 
-import com.example.customexceptions.UnknownWordException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.galacticmerchant.GalacticDictionary;
+import com.galacticmerchant.GalacticQueryHandler;
+import com.galacticmerchant.customexceptions.UnknownWordException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

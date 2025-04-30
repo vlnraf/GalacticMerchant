@@ -1,4 +1,4 @@
-package com.example.customexceptions;
+package com.galacticmerchant.customexceptions;
 
 public class UnknownWordException extends Exception {
     public UnknownWordException(String word) {

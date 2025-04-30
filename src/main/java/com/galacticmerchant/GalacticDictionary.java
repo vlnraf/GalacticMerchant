@@ -1,9 +1,9 @@
-package com.example;
+package com.galacticmerchant;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.customexceptions.UnknownWordException;
+import com.galacticmerchant.customexceptions.UnknownWordException;
 
 public class GalacticDictionary {
 

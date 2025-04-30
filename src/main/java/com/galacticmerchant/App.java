@@ -1,4 +1,4 @@
-package com.example;
+package com.galacticmerchant;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -6,9 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.example.customexceptions.MaxRepeatingException;
-import com.example.customexceptions.NonRepeatingException;
-import com.example.customexceptions.UnknownWordException;
+import com.galacticmerchant.customexceptions.MaxRepeatingException;
+import com.galacticmerchant.customexceptions.NonRepeatingException;
+import com.galacticmerchant.customexceptions.UnknownWordException;
 
 public final class App {
     private App() {}

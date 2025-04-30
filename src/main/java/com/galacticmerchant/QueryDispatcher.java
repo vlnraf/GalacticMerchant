@@ -1,4 +1,4 @@
-package com.example;
+package com.galacticmerchant;
 
 import java.util.Arrays;
 

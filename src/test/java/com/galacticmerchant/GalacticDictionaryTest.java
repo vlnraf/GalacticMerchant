@@ -1,6 +1,8 @@
-package com.example;
+package com.galacticmerchant;
 
 import org.junit.jupiter.api.Test;
+
+import com.galacticmerchant.GalacticDictionary;
 
 import static org.junit.jupiter.api.Assertions.*;
 

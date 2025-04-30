@@ -1,12 +1,12 @@
-package com.example;
+package com.galacticmerchant;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.customexceptions.MaxRepeatingException;
-import com.example.customexceptions.NonRepeatingException;
+import com.galacticmerchant.customexceptions.MaxRepeatingException;
+import com.galacticmerchant.customexceptions.NonRepeatingException;
 
 public class RomanConverter {
 

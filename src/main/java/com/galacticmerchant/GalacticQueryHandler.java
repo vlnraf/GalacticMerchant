@@ -1,9 +1,9 @@
-package com.example;
+package com.galacticmerchant;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.customexceptions.UnknownWordException;
+import com.galacticmerchant.customexceptions.UnknownWordException;
 
 public class GalacticQueryHandler {
     private final GalacticDictionary dictionary;

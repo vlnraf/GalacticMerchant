@@ -1,4 +1,4 @@
-package com.example.customexceptions;
+package com.galacticmerchant.customexceptions;
 
 public class MaxRepeatingException extends Exception{
     public MaxRepeatingException(Character character) {
